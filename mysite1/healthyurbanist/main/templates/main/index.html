@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Здоровая урбанистика</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="shortcut icon" href="{% static 'css/images/favicon.ico' %}">
+</head>
+<body>
+    <div class="shell">
+        <div class="border">
+            <nav id="navigation">
+                <ul>
+                    <li><a href="/" class="active">⌂ Главная</a></li>
+                    <li><a href="/admin" class="admin">⏿ Админ панель</a></li>
+                    <li><a href="/about" class="about">| Страница о нас</a></li>
+                </ul>
+            </nav>
+
+            <main id="main">
+                <section class="projects">
+                    <h2>Записи</h2>
+                    {% for post in post_list %}
+                    <article class="item">
+                        <div class="image-container">
+                            <a href="{{ post.id }}"><img src="{{ post.img.url }}" alt="{{ post.title }}"></a>
+                        </div>
+                        <div class="text-content">
+                            <h4><a href="{{ post.id }}">{{ post.title }}</a></h4>
+                            <p>{{ post.description|truncatewords:30 }}</p>
+                            <p class="author">Автор: {{ post.author }}</p>
+                        </div>
+                    </article>
+                    {% endfor %}
+                </section>
+            </main>
+        </div>
+
+        <footer id="footer">
+            <p>Copyright &copy; 2025</p>
+        </footer>
+    </div>
+</body>
+</html>
